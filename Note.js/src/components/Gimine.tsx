@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { RiSendPlane2Fill, RiBardFill } from "@remixicon/react";
 
-const API_KEY = "AIzaSyBW_yFP8wdB4yLu7g3sWqnQvALmzi2wslc"; // 🔹 Replace with your actual API key
+ // 🔹 Replace with your actual API key
 const URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
 function Gimine({setContent , Content ,Texablebox}) {
