@@ -12,6 +12,42 @@ Whether you want a clean space to write, or an intelligent assistant to help you
 
 ---
 
+## 📸 Screenshots
+
+> Below are some screenshots showing the key features of Note.js in action.
+
+### 🏠 Home Dashboard
+![alt text](image.png)
+---
+
+### 📝 Create a New Note
+![alt text](image-1.png)
+---
+
+### 🎨 Text Formatting Menu
+Highlight text, set font size, bold, italic, underline.
+![alt text](image-2.png)
+![alt text](image-3.png)
+
+
+---
+
+### 🤖 Gemini Command Interface
+Type your prompt and generate a custom dashboard.
+![alt text](image-4.png)
+![alt text](image-5.png)
+
+
+---
+
+### 📤 Export as PDF
+Click to download your note as a beautifully formatted PDF.
+![alt text](image-6.png)
+![alt text](image-7.png)
+
+---
+
+
 ## 🧑‍💻 Tech Stack
 
 ### 🔹 Frontend

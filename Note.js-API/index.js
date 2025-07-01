@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cors());
 
 // Initialize Firebase Admin SDK
-const serviceAccount = require("./notesjs-3235a-firebase-adminsdk-fbsvc-a5e39b7b89.json");
+const serviceAccount = require("./notesjs-3235a-firebase-adminsdk-fbsvc-e4ee440d1f.json");
 const { error } = require("console");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
