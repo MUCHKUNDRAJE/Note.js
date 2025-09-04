@@ -22,3 +22,8 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
   // You can expose other APTs you need here.
   // ...
 })
+
+contextBridge.exposeInMainWorld("electronAPI", {
+  showNotification: (title:string, body:string, icon:string) =>
+    ipcRenderer.send("show-notification", { title, body, icon }),
+});

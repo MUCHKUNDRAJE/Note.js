@@ -1,8 +1,6 @@
-import { app, BrowserWindow } from "electron";
-import { createRequire } from "node:module";
+import { app, ipcMain, Notification, BrowserWindow } from "electron";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
-createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 process.env.APP_ROOT = path.join(__dirname, "..");
 const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];
@@ -12,20 +10,29 @@ process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL ? path.join(process.env.APP_ROOT, 
 let win;
 function createWindow() {
   win = new BrowserWindow({
-    icon: path.join(process.env.VITE_PUBLIC, "electron-vite.svg"),
+    show: false,
+    // keep hidden until ready
+    icon: path.join(RENDERER_DIST, "Note.js.png"),
     webPreferences: {
       preload: path.join(__dirname, "preload.mjs")
     }
-  });
-  win.webContents.on("did-finish-load", () => {
-    win == null ? void 0 : win.webContents.send("main-process-message", (/* @__PURE__ */ new Date()).toLocaleString());
   });
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL);
   } else {
     win.loadFile(path.join(RENDERER_DIST, "index.html"));
   }
+  win.once("ready-to-show", () => {
+    win == null ? void 0 : win.show();
+  });
 }
+app.whenReady().then(() => {
+  app.setAppUserModelId("Note.js");
+  createWindow();
+  ipcMain.on("show-notification", (_, { title, body }) => {
+    new Notification({ title, body, icon: path.join(RENDERER_DIST, "Note.js.png") }).show();
+  });
+});
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
     app.quit();
@@ -37,7 +44,6 @@ app.on("activate", () => {
     createWindow();
   }
 });
-app.whenReady().then(createWindow);
 export {
   MAIN_DIST,
   RENDERER_DIST,
